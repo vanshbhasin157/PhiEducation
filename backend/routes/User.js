@@ -1,8 +1,9 @@
 const express = require("express");
 const app = express();
 const jsonwt = require("jsonwebtoken");
-
-const User = require("../models/user");
+const { database } = require("../models/modelExport");
+const Op = database.Sequelize.Op;
+const users = database.users
 app.use(express.json());
 var bcrypt = require("bcrypt");
 var saltRouds = 10;
@@ -11,12 +12,8 @@ require("dotenv/config");
 
 router.post("/signUp", async (req, res) => {
   try {
-    var newUser = new User({
-      name: req.body.name,
-      emailAddress: req.body.emailAddress,
-      password: req.body.password,
-    });
-    await User.findOne({ emailAddress: newUser.emailAddress }).then(
+    const newUser = req.body
+    await users.findOne({ where:{[Op.and]:[newUser.userId]} }).then(
       async (profile) => {
         if (!profile) {
           bcrypt.hash(newUser.password, saltRouds, async (err, hash) => {
@@ -24,8 +21,7 @@ router.post("/signUp", async (req, res) => {
               console.log("Error is", err.message);
             } else {
               newUser.password = hash;
-              await newUser
-                .save()
+              await users.create(newUser)
                 .then(() => {
                   res.status(200).send("User Registerd");
                 })
@@ -47,10 +43,8 @@ router.post("/signUp", async (req, res) => {
   }
 });
 router.post("/login", async (req, res) => {
-  var newUser = {};
-  newUser.emailAddress = req.body.emailAddress;
-  newUser.password = req.body.password;
-  await User.findOne({ emailAddress: newUser.emailAddress })
+  var newUser = req.body
+  await users.findOne({ where:{[Op.and]:[newUser.userId]} })
     .then((profile) => {
       if (!profile) {
         res.send("User does not exist");
@@ -65,7 +59,7 @@ router.post("/login", async (req, res) => {
               
               const payload = {
                 id: profile.id,
-                name: profile.name,
+                name: profile.firstName + " " + profile.lastName,
                 emailAddress: profile.emailAddress,
               };
               jsonwt.sign(

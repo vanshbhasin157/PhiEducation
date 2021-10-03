@@ -1,23 +1,17 @@
 
-const users = (sequelize, Sequelize) => {
-    const user = sequelize.define("users", {
-        firstName: {
+const contactMe = (sequelize, Sequelize) => {
+    const contactMe = sequelize.define("contactMe", {
+        fullName: {
             type: Sequelize.STRING
         },
-        lastName: {
-            type: Sequelize.STRING
-        },
-        username: {
-            type: Sequelize.STRING
-        },
-        password: {
+        mobileNumber: {
             type: Sequelize.STRING
         },
         email: {
             type: Sequelize.STRING
         },
-        userId: {
-            type: Sequelize.STRING
+        message:{
+            type: Sequelize.TEXT
         }
     }, {
         // disable the modification of table names; By default, sequelize will automatically
@@ -26,9 +20,9 @@ const users = (sequelize, Sequelize) => {
         freezeTableName: true,
     });
 
-    return user;
+    return contactMe;
 };
 
 module.exports = {
-    users
+    contactMe
 }
