@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Login</title>
+    <link rel="stylesheet" href="../public/css/styles.css">
+</head>
+
+<body style="background-color:rgb(157, 216, 39);">
+    <div class="header-admin">
+        <p style="color: white;">ADMIN PANEL</p>
+    </div>
+    <div class="login-container">
+        <div class="login-text">
+            <h1>LOGIN</h1>
+        </div>
+        <div class="login-form">
+            <form id="login" method="post" action="/api/login">
+                <label>USERNAME</label>
+                <br>
+                <br>
+                <input type="text" name="username" id="username" placeholder="Username">
+                <br><br>
+                <label>PASSWORD</label>
+                <br>
+                <br>
+                <input type="password" name="password" id="password" placeholder="***********" >
+                <br><br>
+                
+                <div id="outer-login">
+                    <div class="inner-login"><button type="submit" class="forgetBttn">Forget Password?</button></div>
+                    <div class="inner-login"><button type="submit" class="msgBtn">Login</button></div>
+
+                </div>
+            </form>
+        </div>
+        
+
+    </div>
+</body>
+
+</html>

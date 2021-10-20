@@ -3,8 +3,11 @@ require("dotenv/config");
 var bodyparser = require("body-parser");
 var passport = require("passport");
 const app = express();
+var path = require('path')
 app.use(bodyparser.urlencoded({ extended: false }));
 app.use(bodyparser.json());
+app.use(express.static(path.join(__dirname, '/public')));
+app.use('/public', express.static(__dirname + "/public"));
 const auth = require("./routes/User");
 const contactMe = require("./routes/ContactMe");
 const { database } = require("./models/modelExport.js");
@@ -15,22 +18,14 @@ app.use(passport.initialize());
 require("./strategies/jsonwtStrategy")(passport);
 app.use("/api", auth);
 app.use("/api",contactMe);
-app.get(
-  "/profile",
-  passport.authenticate("jwt", { session: false }),
-  (req, res) => {
-    res.json({
-      email: req.user.email,
-      name: req.user.firstName + " " +req.user.lastName,
-      username: req.user.username,
-    });
-  }
-);
-
-
-
 app.get("/", (req, res) => {
-  res.send("ok server is running");
+  res.sendFile(__dirname + '/views/homePage.html')
+});
+app.get("/contactMe",(req,res)=>{
+  res.sendFile(__dirname + '/views/contactMe.html')
+});
+app.get("/adminLogin",(req,res)=>{
+  res.sendFile(__dirname + '/views/adminLogin.html')
 });
 
 app.listen(5000, () => {});

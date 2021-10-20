@@ -1,21 +1,24 @@
 const express = require("express");
 const app = express();
+var path = require('path')
+app.use(express.static(path.join(__dirname, '/public')));
+app.use('/public', express.static(__dirname + "/public"));
 var router = express.Router();
 const { database } = require("../models/modelExport");
 const contactMe = database.contactMe
 const Op = database.Sequelize.Op;
 app.use(express.json());
-
 router.post('/contactMe',async(req,res)=>{
     try {
         const details = req.body
         if(details){
             await contactMe.create(details).then(()=>{
-                res.status(201).json(details);
+                res.sendFile(path.resolve('views/success.html'));
             });
         }
     } catch (error) {
         console.log(error);
+        res.send('Something went wrong')
     }
 });
 

@@ -1,0 +1,190 @@
+body {
+    background-color: rgb(223, 223, 223);
+    padding: 10px;
+  }
+  
+  .header-content {
+    border-radius: 15px 15px 0px 0px;
+    background-color: rgb(157, 216, 39);
+    display: flex;
+  }
+  
+  
+  button {
+    border-radius: 5px;
+    background-color: rgb(34, 34, 34);
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+  }
+  
+  .column {
+    float: left;
+    width: 50%;
+  }
+  
+  .row {
+  display: flex;
+    border-radius: 0px 0px 15px 15px;
+    background-color: rgb(255, 255, 255);
+    padding: 10px;
+  }
+  .row:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+  
+  .flex-container{
+    display: flex;
+  }
+  
+  .flex-child {
+    flex: 1;
+    border-radius: 15px;
+    padding: 0px 12px;
+    margin-top: 18px;
+    background-color: rgb(255, 255, 255);
+  }  
+  
+  .content{
+    display: flex;
+  }
+  
+  .content-date{
+    flex: 1;
+    
+  }
+  .content-child{
+    flex: 3;
+  
+  }
+  
+  .flex-child:first-child {
+    margin-right: 18px;
+  }
+  
+  .footer{
+    border-radius: 15px;
+    padding: 10px;
+    margin-top: 18px;
+    background-color: rgb(255, 255, 255);
+  }
+  progress::-moz-progress-bar { background-color: rgb(157, 216, 39);width: 500px;}
+  progress::-webkit-progress-value { background-color: rgb(157, 216, 39); width: 500px; }
+  progress { 
+    height: 10px;
+    background-color: rgb(157, 216, 39);width: 500px; }
+    
+    .dot {
+      height: 15px;
+      width: 15px;
+      background-color:rgb(157, 216, 39);
+      
+      border-radius: 50%;
+      display: inline-block;
+    }
+    .header-list{
+      margin-right: 10px;
+      margin-bottom: 10px;
+    }
+    .header-list-hi{
+      margin-right: 7.8px;
+      margin-bottom: 10px;
+    }
+    .flex {
+      display: grid;
+      grid-auto-flow: row;
+      grid-gap: 5px;
+      grid-template-rows: 50px 50px;
+      grid-template-columns: 150px 150px;
+      padding: 10px;
+    }
+    .contact-me{
+      margin-left: 20%;
+      margin-top: 10%;
+      margin-right: 25%;
+    }
+    .contact-form{
+      margin-left: 20%;
+      margin-right: 25%;
+    }
+    input[type=text], select {
+      width: 100%;
+      padding: 12px 20px;
+      margin: 8px 0;
+      display: inline-block;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      box-sizing: border-box;
+    }
+    input[type=password], select {
+      width: 100%;
+      padding: 12px 20px;
+      margin: 8px 0;
+      display: inline-block;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      box-sizing: border-box;
+    }
+    #outer
+  {
+      width:100%;
+      text-align: right;
+  }
+  .inner
+  {
+      display: inline-block;
+  }
+  .msgBtnBack{
+    background-color: #ccc;
+    width: 150px;
+  }
+  .msgBtn{
+    width: 150px;
+  }
+  .header-admin{
+    margin-left: 45%;
+    margin-top: 12%;
+  }
+  .login-container{
+    border-radius: 15px 15px 15px 15px;
+    height: 400px;
+    width: 550px;
+    background-color: white;
+    margin-left: 30%;
+  }
+  .login-text{
+    padding-top: 10px;
+    margin-left: 20px;
+  }
+  .login-form{
+   padding-left: 20px;
+   padding-right: 20px;
+  }
+  .forget{
+    padding-bottom: 30%;
+    padding-left: 20px;
+    color: black;
+    background:none; border:none;
+  }
+  #outer-login
+  {
+      width:100%;
+      text-align: end;
+  }
+  .inner-login
+  {
+      display: inline-block;
+  }
+  .forgetBttn{
+    background:none; border:none;
+    color: black;
+  }
+  

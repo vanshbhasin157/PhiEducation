@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ContactMe</title>
+    <link rel="stylesheet" href="../public/css/styles.css">
+</head>
+
+<body style="background-color:white;">
+    </bodystyle>
+    <div id="main-wrapper">
+        <header class="header-content">
+            <img src="../public/img/img.png" alt="logo" />
+            <div>
+                <h1>SOME NAME</h1>
+                <h2>Web Developer</h2>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quam, aut sed id suscipit dignissimos a
+                    nostrum praesentium ratione modi odio perspiciatis incidunt molestiae omnis consequuntur? Quasi
+                    excepturi nemo quos harum!</p>
+            </div>
+        </header>
+        <div class="contact-me">
+            <h2>CONTACT ME</h2>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quam, aut sed id suscipit dignissimos a
+                nostrum praesentium ratione modi odio perspiciatis incidunt molestiae omnis consequuntur? Quasi
+                excepturi nemo quos harum!</p>
+        </div>
+        <div class="contact-form">
+            <form id="contact-me" method="post" action="/api/contactMe">
+                <label>FULL NAME</label>
+                <br>
+                <br>
+                <input type="text" name="fullName" id="name" placeholder="Example Name">
+                <br><br>
+                <label>MOBILE</label>
+                <br>
+                <br>
+                <input type="text" name="mobileNumber" id="mobile" placeholder="1234567890">
+                <br><br>
+                <label>EMAIL</label>
+                <br>
+                <br>
+                <input type="text" name="email" id="email" placeholder="example@email.com">
+                <br><br>
+                <label>MESSAGE</label>
+                <br>
+                <br>
+                <input style="height: 200px;" type="text" name="message" id="message" placeholder="Some Message">
+
+                <br><br>
+                <div id="outer">
+                    <div class="inner"><button class="msgBtnBack"
+                            onclick="location.href = 'homePage';">Back</button></div>
+                    <div class="inner"><button type="submit" class="msgBtn">Save</button></div>
+
+                </div>
+            </form>
+        </div>
+
+</body>
+
+</html>
