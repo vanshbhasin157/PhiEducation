@@ -1,0 +1,87 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Messages</title>
+    <link rel="stylesheet" href="../public/css/messages.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+        
+        jQuery(document).ready(function ($) {
+            $('#thetable').find('tr').click( function(){
+                var index = ($(this).index())
+                var test = <%- JSON.stringify(data) %>;
+                var email = test[index].email;
+                var mobileNumber = test[index].mobileNumber;
+                var message = test[index].message;
+                var fullname = test[index].fullName;
+                $('#fullname').html(fullname);
+                $('#email').html(email);
+                $('#mobileNumber').html(mobileNumber);
+                $('#message').html(message);
+            
+            });
+            
+        });
+    </script>
+</head>
+
+<body>
+    <div class="main">
+        <div class="header">
+            <div class="head-left">
+                <img src="../public/img/img.png" alt="profile-pic" height="30%" width="40%">
+                <div class="head-left-content">
+                    <h3>Welcome</h3>
+                    <h2>
+                        <%= fullname %>
+                    </h2>
+                </div>
+
+            </div>
+            <div class="head-right">
+                <img src="../public/img/logout.png" alt="logout">
+                <h3><a class="logout" href="../adminLogin">Logout</a></h3>
+            </div>
+        </div>
+        <div class="content">
+            <h1>MESSAGES(<%= count %>)</h1>
+            <div class="msg-box">
+                <table id="thetable">
+                    <% data.forEach((item)=> { %>
+                        <tr>
+                            <td>
+                                <%= item.message %>
+                            </td>
+                        </tr>
+                        <% }) %>
+                </table>
+            </div>
+            <div class="msg">
+                <div class="msg-upper">
+                    <h3>
+                        <span id="fullname"></span>
+                    </h3>
+                    <p>12th Mar,2020 07:45pm</p>
+                    <p id="mob"><strong>Mob.: </strong>
+                        <span id="mobileNumber"></span>
+                    </p>
+                    <p id="email"><strong>Email: </strong>
+                        <span id="email"></span>
+                    </p>
+                </div>
+                <hr>
+                <div class="msg-main">
+                    <p>
+                        <span id="message"></span>
+                    </p>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

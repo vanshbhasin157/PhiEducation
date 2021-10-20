@@ -18,6 +18,9 @@ app.use(passport.initialize());
 require("./strategies/jsonwtStrategy")(passport);
 app.use("/api", auth);
 app.use("/api",contactMe);
+app.set('views', './views')
+app.set('view engine', 'ejs')
+
 app.get("/", (req, res) => {
   res.sendFile(__dirname + '/views/homePage.html')
 });
@@ -30,5 +33,7 @@ app.get("/adminLogin",(req,res)=>{
 app.get("/forgetPassword",(req,res)=>{
   res.sendFile(__dirname + '/views/forgetPassword.html')
 });
-
+app.get("/messages",(req,res)=>{
+  res.sendFile(__dirname + '/views/myMessages.html')
+})
 app.listen(8000, () => {});

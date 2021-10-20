@@ -1,18 +1,21 @@
 const express = require("express");
 const app = express();
-var path = require('path')
-app.use(express.static(path.join(__dirname, '/public')));
-app.use('/public', express.static(__dirname + "/public"));
+var path = require("path");
+app.use(express.static(path.join(__dirname, "/public")));
+app.use("/public", express.static(__dirname + "/public"));
 const jsonwt = require("jsonwebtoken");
 const { database } = require("../models/modelExport");
 const Op = database.Sequelize.Op;
 const users = database.users;
+const contactMe = database.contactMe;
 app.use(express.json());
 var bcrypt = require("bcrypt");
 var saltRouds = 10;
 var router = express.Router();
 const { v1: uuidv1, v4: uuidv4 } = require("uuid");
 require("dotenv/config");
+app.set("views", "./views");
+app.set("view engine", "ejs");
 
 router.post("/signUp", async (req, res) => {
   try {
@@ -51,9 +54,12 @@ router.post("/signUp", async (req, res) => {
 router.post("/login", async (req, res) => {
   var newUser = req.body;
   try {
-    const detectedUser = await users.findOne({ where: { username: newUser.username } })
+    const detectedUser = await users.findOne({
+      where: { username: newUser.username },
+    });
+    const data = await contactMe.findAll({ limit: 50 });
     if (!detectedUser) {
-      res.send('User does not exist')
+      res.send("User does not exist");
     } else {
       bcrypt.compare(
         newUser.password,
@@ -72,11 +78,16 @@ router.post("/login", async (req, res) => {
               process.env.SECRET_KEY,
               { expiresIn: 3600 },
               (err, token) => {
-                res.status(200).json({
-                  payload: payload,
-                  success: true,
-                  token: token,
-                });
+                if (data) {
+                  console.log(data);
+                  res.render("myMessages", {
+                    fullname: detectedUser.firstName + " " + detectedUser.lastName,
+                    count: Object.keys(data).length,
+                    data: data,
+                  });
+                } else {
+                  console.log("errr");
+                }
               }
             );
           } else {
@@ -90,7 +101,7 @@ router.post("/login", async (req, res) => {
   }
 });
 router.post("/forgetPassword", async (req, res) => {
-  const updateUser = req.body
+  const updateUser = req.body;
   await users
     .findOne({ where: { email: req.body.email } })
     .then((profile) => {
@@ -105,7 +116,7 @@ router.post("/forgetPassword", async (req, res) => {
             await users
               .update(updateUser, { where: { email: req.body.email } })
               .then(() => {
-                res.sendFile(path.resolve('views/passwordSuccess.html'));
+                res.sendFile(path.resolve("views/passwordSuccess.html"));
               })
               .catch((err) => {
                 console.log(err);
