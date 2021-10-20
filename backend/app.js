@@ -27,5 +27,8 @@ app.get("/contactMe",(req,res)=>{
 app.get("/adminLogin",(req,res)=>{
   res.sendFile(__dirname + '/views/adminLogin.html')
 });
+app.get("/forgetPassword",(req,res)=>{
+  res.sendFile(__dirname + '/views/forgetPassword.html')
+});
 
-app.listen(5000, () => {});
+app.listen(8000, () => {});

@@ -1,5 +1,8 @@
 const express = require("express");
 const app = express();
+var path = require('path')
+app.use(express.static(path.join(__dirname, '/public')));
+app.use('/public', express.static(__dirname + "/public"));
 const jsonwt = require("jsonwebtoken");
 const { database } = require("../models/modelExport");
 const Op = database.Sequelize.Op;
@@ -86,7 +89,7 @@ router.post("/login", async (req, res) => {
     console.log("Error is", err.message);
   }
 });
-router.patch("/forgetPassword", async (req, res) => {
+router.post("/forgetPassword", async (req, res) => {
   const updateUser = req.body
   await users
     .findOne({ where: { email: req.body.email } })
@@ -102,7 +105,7 @@ router.patch("/forgetPassword", async (req, res) => {
             await users
               .update(updateUser, { where: { email: req.body.email } })
               .then(() => {
-                res.send("password updated");
+                res.sendFile(path.resolve('views/passwordSuccess.html'));
               })
               .catch((err) => {
                 console.log(err);
